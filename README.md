@@ -35,9 +35,10 @@ This repo contains an empty react app. Your job is to implement the following us
 1. Given that I have deleted a person, when I am on the list page, then I no longer see the deleted people.
 
 Tips:
-*  Use [simulate](https://github.com/airbnb/enzyme/blob/master/docs/api/ShallowWrapper/simulate.md) to simulate text change and click events
-*  Use sinon to stub the `onEdit()` call
-*  Verify the stub was called with the correct arguments.
+* Use [simulate](https://github.com/airbnb/enzyme/blob/master/docs/api/ShallowWrapper/simulate.md) to simulate text change and click events
+* Use sinon to stub the `onEdit()` call
+* Verify the stub was called with the correct arguments.
+* Use [controlled components](https://reactjs.org/docs/forms.html) for input.
 
 ## Resources
 
