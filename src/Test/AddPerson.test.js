@@ -1,5 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import sinon from 'sinon'
 
 import AddPerson from '../Components/AddPerson.js'
 
@@ -44,6 +45,33 @@ describe('AddPerson Component', () => {
 
     expect(state.firstName).toBe(FIRST_NAME)
     expect(state.lastName).toBe(LAST_NAME)
+  })
+  it('has create person and cancel button', () => {
+    const wrapper = shallow(<AddPerson />)
+
+    const addButton = wrapper.find('button.add')
+    expect(addButton).toHaveLength(1)
+    expect(addButton.text()).toBe('Add Person')
+    
+    const cancelButton = wrapper.find('button.cancel')
+    expect(cancelButton).toHaveLength(1)
+    expect(cancelButton.text()).toBe('Go Back')
+  })
+
+  it('submits new name and cleans out state', () => {
+    const spy = sinon.spy()
+
+    const wrapper = shallow(<AddPerson addPerson={spy}/>)
+    wrapper.setState({ firstName: 'Kurt', lastName:'Goedel'})
+    
+    wrapper.find('button.add').first().simulate('click')
+    
+    const state = wrapper.state()
+
+    expect(spy.calledOnceWith('Kurt', 'Goedel')).toBe(true)
+    expect(state.firstName).toBe('')
+    expect(state.lastName).toBe('')
+
   })
 
 })

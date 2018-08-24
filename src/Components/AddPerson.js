@@ -16,10 +16,18 @@ class AddPerson extends Component {
     }
   }
 
+  handleSubmit = () => {
+    const { firstName, lastName } = this.state
+    this.props.addPerson(firstName, lastName)
+    this.setState({firstName:'', lastName:''})
+  }
+
   render(){
     return <div>
       <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange}/>
       <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleChange}/>
+      <button className="add" onClick={this.handleSubmit}>Add Person</button>
+      <button className="cancel">Go Back</button>
     </div>
   }
 }
